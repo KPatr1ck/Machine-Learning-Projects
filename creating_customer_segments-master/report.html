@@ -12298,7 +12298,7 @@ score of the DecisionTreeRegressor is 0.681884008544.
 存在。<br>
 Grocery和Detergents_Paper，Grocery和Milk，Detergents_Paper和Milk都呈一定的线性关系。<br>
 这个结果确实验证了我预测的Grocery特征的相关性。<br>
-这些特征的数据大多分布在最大值的5%-10%。</p>
+这些特征的数据大多分布在最大值的5%-10%，呈正偏态分布。</p>
 
 </div>
 </div>
@@ -12517,7 +12517,7 @@ Grocery和Detergents_Paper，Grocery和Milk，Detergents_Paper和Milk都呈一�
 <span class="c1">#             outliers_index_map[idx] = 1</span>
 
 <span class="c1"># 打印出所有曾被视作异常的数据点的索引值和被当做异常点的次数</span>
-<span class="c1"># print outliers_index_map</span>
+<span class="c1"># print len(outliers_index_map)</span>
 <span class="c1"># print sorted(outliers_index_map.items(),key = lambda x:x[1],reverse = True)</span>
             
 <span class="c1"># 可选：选择你希望移除的数据点的索引</span>
@@ -13297,8 +13297,10 @@ Grocery和Detergents_Paper，Grocery和Milk，Detergents_Paper和Milk都呈一�
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>回答:</strong><br>
-在多个特征下被看做是异常的数据点的索引值是：65, 66, 75, 128, 154<br>
-这些点应该被从数据集中移除，因为同时在多个特征都是异常数据点，证明该数据脱离了整体，会影响到算法对数据整体性的判断。</p>
+在多个特征下被看做是异常的数据点有5个，它们的索引值是：65, 66, 75, 128, 154</p>
+<p>如果单个特征异常就被当做异常值的话，那么总共有42个数据点，而数据样本的总记录是440，42个数据点占了9.5%。<br>
+在这42个点中，可能有一些点的数值虽然大，但却是反应了该客户的实际需求的。这样的点被误判为异常值，如果将他们全部移除，则会丢失信息。</p>
+<p>综上，在多个特征下的异常值有5个，占比1%，这5个点的数值在2个或者更多的特征上都被检测出异常，所以其为异常值的概率是较大的，而且这5个数据点的占比仅有1%，将它们从数据集中移除是合理的。</p>
 
 </div>
 </div>
@@ -13649,7 +13651,7 @@ Grocery和Detergents_Paper，Grocery和Milk，Detergents_Paper和Milk都呈一�
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xa13bf28&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xc3014e0&gt;</pre>
 </div>
 
 </div>
