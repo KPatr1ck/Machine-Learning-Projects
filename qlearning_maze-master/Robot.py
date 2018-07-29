@@ -46,7 +46,7 @@ class Robot(object):
         else:
             # TODO 2. Update parameters when learning
             if self.epsilon > 0.1:
-                self.epsilon *= 0.95
+                self.epsilon *= 0.9995
 
         return self.epsilon
 
