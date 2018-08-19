@@ -13264,8 +13264,9 @@ test_{network} = bottleneck_features['test']</code></pre>
 <p><a id='question6'></a></p>
 <h3 id="&#38382;&#39064;-6:"><strong>&#38382;&#39064; 6:</strong><a class="anchor-link" href="#&#38382;&#39064;-6:">&#182;</a></h3><p>在下方的代码块中尝试使用 Keras 搭建最终的网络架构，并回答你实现最终 CNN 架构的步骤与每一步的作用，并描述你在迁移学习过程中，使用该网络架构的原因。</p>
 <p><strong>回答:</strong><br>
-利用迁移学习，使用已经通过预训练的Xception，通过这个模型对数据提取特征，利用GlobalAveragePooling将数据降维至一阶，最后接入一个全连接层，激活函数用softmax输出对应133种不同犬类对应的几率。</p>
-<p>选择Xception的原因是：通过自己对于该项目数据的测试，和阅读通过网上搜索的资料（ <a href="https://blog.csdn.net/weixin_41770169/article/details/80525888">https://blog.csdn.net/weixin_41770169/article/details/80525888</a> )发现，Xception用于此项目数据的识别精确度是几者当中最高的，比较了bottleneck_features的维度，Xception的7<em>7</em>2048是最大的，这应该是它最终展现出高精确度的必要条件。</p>
+使用迁移学习的模型的效果比第三步中的模型还要成功，因为这几个可用的迁移模型已通过合理建模，并且通过了大量的图片训练集的训练，使得他们获取了提取图片特征的能力；而第三步中的模型中，建模是相对来说很简单的，参数少，训练集小，所以训练过后的泛化能力低，导致其表现远不及迁移学习的模型。使用解决类似问题的预训练模型，模型本身已经具有较强的特征提取能力，在该项目中，只对于global_average_pooling和dense层进行训练，不需要从头开始训练整个模型(如果有条件最好还是需要fine tune)，大大地减少了时间成本。</p>
+<p>利用迁移学习，使用已经通过预训练的Xception，通过这个模型对数据提取特征，利用GlobalAveragePooling将数据降维至一阶，最后接入一个全连接层，激活函数用softmax输出对应133种不同犬类对应的几率。</p>
+<p>选择Xception的原因是：几个预训练模型的结构和参数个数都不相同，通过自己对于该项目数据的测试，和阅读通过网上搜索的资料（ <a href="https://blog.csdn.net/weixin_41770169/article/details/80525888">https://blog.csdn.net/weixin_41770169/article/details/80525888</a> )发现，Xception用于此项目数据的识别精确度是几者当中最高的，比较了bottleneck_features的维度，Xception的7<em>7</em>2048是最大的，这应该是它最终展现出高精确度的必要条件。</p>
 
 </div>
 </div>
